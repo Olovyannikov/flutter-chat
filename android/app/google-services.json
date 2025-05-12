@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "197655974037",
+    "project_id": "social-media-test-app-2010a",
+    "storage_bucket": "social-media-test-app-2010a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197655974037:android:0e96aa9fa1d0f694088b9c",
+        "android_client_info": {
+          "package_name": "com.ivo.flutter_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmSvVNHmSBxQAw1h7Kw-ElWR_pUU5MmLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

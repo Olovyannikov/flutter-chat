@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
       home: SignUpScreen(),
       routes: {
         SignInScreen.id: (context) => SignInScreen(),
-        SignUpScreen.id: (context) => SignUpScreen()
+        SignUpScreen.id: (context) => SignUpScreen(),
+        PostsScreen.id: (context) => PostsScreen()
       },
     );
   }
