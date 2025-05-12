@@ -13,6 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark(),
       home: SignUpScreen(),
+      routes: {
+        SignInScreen.id: (context) => SignInScreen(),
+        SignUpScreen.id: (context) => SignUpScreen()
+      },
     );
   }
 }

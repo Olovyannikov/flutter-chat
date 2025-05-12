@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/pages/pages.dart';
 
-class SignUpScreen extends StatefulWidget {
-  static const String id = "sign_up_screen";
-  const SignUpScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  static const String id = "sign_in_screen";
+
+  const SignInScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
 
   String _email = "";
-  String _username = "";
   String _password = "";
 
   final FocusNode _passwordFocusNode = FocusNode();
-  final FocusNode _usernameFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -48,37 +47,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       labelText: "Enter your email",
                     ),
                     onFieldSubmitted: (_) {
-                      FocusScope.of(context).requestFocus(_usernameFocusNode);
+                      FocusScope.of(context).requestFocus(_passwordFocusNode);
                     },
                     onSaved: (value) {
                       _email = value!.trim();
                     },
                     validator: (value) {
                       if (value!.isEmpty) return 'Please enter your email';
-              
-                      return null;
-                    },
-                    textInputAction: TextInputAction.next,
-                  ),
-                  SizedBox(height: 16,),
-                  TextFormField(
-                    focusNode: _usernameFocusNode,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      labelText: "Enter your username",
-                    ),
-                    onFieldSubmitted: (_) {
-                      FocusScope.of(context).requestFocus(_passwordFocusNode);
-                    },
-                    onSaved: (value) {
-                      _username = value!.trim();
-                    },
-                    validator: (value) {
-                      if (value!.isEmpty) return 'Please enter your user name';
-              
+
                       return null;
                     },
                     textInputAction: TextInputAction.next,
@@ -102,16 +78,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (value.length < 5) {
                         return 'Password must contains at least 5 characters';
                       }
-              
+
                       return null;
                     },
                     textInputAction: TextInputAction.done,
                   ),
                   SizedBox(height: 16,),
-                  TextButton(onPressed: () {}, child: Text('Sign Up')),
+                  TextButton(onPressed: () {}, child: Text('Sign In')),
                   TextButton(onPressed: () {
-                    Navigator.of(context).pushReplacementNamed(SignInScreen.id);
-                  }, child: Text('Sign In Instead')),
+                    Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+                  }, child: Text('Sign Up Instead')),
                 ],
               ),
             ),
@@ -121,3 +97,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+
