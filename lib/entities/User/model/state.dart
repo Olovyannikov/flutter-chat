@@ -1,4 +1,4 @@
-part of 'cubit.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class AuthState extends Equatable {
   const AuthState();

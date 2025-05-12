@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_chat/entities/User/user_entity.dart';
 import 'package:flutter_chat/pages/pages.dart';
 
 void main()async {
@@ -13,14 +15,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark(),
-      home: SignUpScreen(),
-      routes: {
-        SignInScreen.id: (context) => SignInScreen(),
-        SignUpScreen.id: (context) => SignUpScreen(),
-        PostsScreen.id: (context) => PostsScreen()
-      },
+    return BlocProvider<AuthCubit>(
+      create: (context) => AuthCubit(),
+      child: MaterialApp(
+        theme: ThemeData.dark(),
+        home: SignUpScreen(),
+        routes: {
+          SignInScreen.id: (context) => SignInScreen(),
+          SignUpScreen.id: (context) => SignUpScreen(),
+          PostsScreen.id: (context) => PostsScreen()
+        },
+      ),
     );
   }
 }
