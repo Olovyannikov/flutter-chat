@@ -41,9 +41,7 @@ class _PostsScreenState extends State<PostsScreen> {
           ),
           IconButton(
             onPressed: () {
-              context.read<AuthCubit>().signOut().then((_) {
-                Navigator.of(context).pushReplacementNamed(SignInScreen.id);
-              });
+              context.read<AuthCubit>().signOut();
             },
             icon: Icon(Icons.logout),
           ),
