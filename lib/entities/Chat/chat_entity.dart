@@ -1,0 +1,1 @@
+export 'model/chat.model.dart' show ChatModel;

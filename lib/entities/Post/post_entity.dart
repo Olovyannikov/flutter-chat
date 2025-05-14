@@ -1,0 +1,1 @@
+export 'model/post.model.dart' show PostModel;

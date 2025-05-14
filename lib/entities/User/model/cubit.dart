@@ -23,8 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
       }
     } catch (e) {
       emit(AuthFailure(message: "An error has occurred"));
-    } finally {
-    }
+    } finally {}
   }
 
   Future<void> signUp({
@@ -39,19 +38,32 @@ class AuthCubit extends Cubit<AuthState> {
       final UserCredential userCredential = await auth
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      FirebaseFirestore.instance.collection("users").doc(userCredential.user!.uid).set({
-        "userId": userCredential.user!.uid,
-        "userName": username,
-        "email": email,
-      });
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(userCredential.user!.uid)
+          .set({
+            "userId": userCredential.user!.uid,
+            "userName": username,
+            "email": email,
+          });
+
+      userCredential.user!.updateDisplayName(username);
+
+      emit(AuthSignedUp());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(AuthFailure(message: "The password provided is too weak."));
       } else if (e.code == 'email-already-in-use') {
-        emit(AuthFailure(message: "The account already exists for this email."));
+        emit(
+          AuthFailure(message: "The account already exists for this email."),
+        );
       }
-    }catch (e) {
+    } catch (e) {
       emit(AuthFailure(message: "An error has occurred"));
     }
+  }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }
